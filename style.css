@@ -1,128 +1,282 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Emblema+One&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 :root {
-  --main-color: #333;
-  --text-color: #666;
-  --bg-color: #f4f4f4;
+  --main-color: #0061bb;
+  --text-color: #080808;
+  --bg-color: #f5f5f5;
   --white: white;
+  --border-color: #ddd;
+  --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --footer-color: #333;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: "Oswald", sans-serif;
-  margin: 0;
   background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 header {
   background-color: var(--main-color);
   color: var(--white);
   text-align: center;
-  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .arriba {
+  padding-top: 5px;
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.arriba:hover {
+  animation: pulse 1s 5;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+nav {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  margin-top: 10px;
 }
 
 .navega {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   list-style: none;
-  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .navega li {
-  margin: 0 15px;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.navega li:hover {
+  border-bottom: 3px solid var(--main-color);
 }
 
 .navega a {
-  color: var(--white);
+  color: var(--text-color);
   text-decoration: none;
   padding: 10px;
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-section {
-  padding: 10px;
-}
-
-section h2 {
-  text-align: center;
+.navega a:hover {
   color: var(--main-color);
 }
 
-.noticia-container, .ejemplos-container, .videos-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+section {
+  padding: 15px 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h2 {
+  text-align: left;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--main-color);
+  padding-left: 10px;
+  font-size: 24px;
+}
+
+.noticia-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 
 .noticia-item {
-  text-align: center;
-  max-width: 250px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding-bottom: 10px;
+  background-color: var(--white);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.noticia-item:hover {
+  transform: translateY(-5px);
 }
 
 .fotos {
-  width: 250px;
-  height: 200px;
-  border-radius: 8px;
-  transition: transform 0.3s;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
 }
 
 .noticia-item h3 {
-  margin: 10px 0 5px;
-  color: var(--main-color);
+  margin: 15px 15px 5px;
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .noticia-item p {
   color: var(--text-color);
-  font-size: 0.9em;
+  font-size: 14px;
+  padding: 0 15px 15px;
+  flex-grow: 1;
+}
+
+.ejemplos-container, .videos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .ejemplo-item, .video-item {
-  text-align: center;
   background: var(--white);
   padding: 20px;
-  border-radius: 8px;
-  max-width: 300px;
-  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+  text-align: left;
+}
+
+.ejemplo-item:hover, .video-item:hover {
+  transform: translateY(-5px);
+}
+
+.ejemplo-item h3, .video-item h3 {
+  color: var(--text-color);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.ejemplo-item p {
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
 .btn {
   background-color: var(--main-color);
   color: var(--white);
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 4px;
   display: inline-block;
-  margin-top: 10px;
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-  transform: scale(1.1);
+  background-color: #0d066b;
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: var(--footer-color);
+  color: var(--white);
+  padding: 30px 10px;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--white);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9em;
+  color: #999;
 }
 
 @media screen and (max-width: 768px) {
-  .noticia-container, .ejemplos-container, .videos-container {
-    flex-direction: column;
-    align-items: center;
+  .navega {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .noticia-container {
+    grid-template-columns: 1fr;
   }
   
   .fotos {
-    width: 100%;
     height: auto;
+    max-height: 220px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .noticia-container {
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .noticia-item, .ejemplo-item, .video-item {
-    max-width: 90%;
+  .ejemplos-container, .videos-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .noticia-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .noticia-item:first-child .fotos {
+    height: 300px;
+  }
+  
+  .noticia-item:first-child h3 {
+    font-size: 22px;
   }
 }
